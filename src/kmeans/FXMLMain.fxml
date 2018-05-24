@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kmeans.FXMLMainController">
+    <children>
+        <HBox alignment="CENTER" maxHeight="45.0" minHeight="45.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #c0c0c0;">
+            <children>
+                <Label text="KMeans">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+      <GridPane VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </VBox.margin>
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="70.0" prefWidth="873.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="30.0" prefWidth="228.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+         </rowConstraints>
+         <children>
+            <ScatterChart fx:id="sc" prefHeight="583.0" prefWidth="570.0" GridPane.rowSpan="3">
+               <xAxis>
+                  <NumberAxis fx:id="naX" label="X" side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="naY" label="Y" side="LEFT" />
+               </yAxis>
+            </ScatterChart>
+            <Label text="Centroides" GridPane.columnIndex="1" />
+            <TableView fx:id="tvCentroides" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="tvCentroidesClass" prefWidth="75.0" text="CLASS" />
+                <TableColumn fx:id="tvCentroidesFeatures" prefWidth="150.0" text="FEATURES" />
+              </columns>
+               <GridPane.margin>
+                  <Insets bottom="60.0" />
+               </GridPane.margin>
+            </TableView>
+            <Spinner fx:id="spnC" maxWidth="1.7976931348623157E308" onMouseClicked="#OnMouseClicked_spn" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+            <HBox fx:id="hbX" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="3" />
+            <HBox fx:id="hbY" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" fillHeight="false" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+         <children>
+            <Button layoutX="211.0" layoutY="23.0" mnemonicParsing="false" onAction="#OnAction_Abrir" prefWidth="110.0" text="Abrir" />
+            <Button mnemonicParsing="false" onAction="#OnAction_Reset" prefWidth="110.0" text="Reset" />
+            <Button mnemonicParsing="false" onAction="#OnAction_PassoAPasso" prefHeight="25.0" prefWidth="110.0" text="Passo a Passo" />
+            <Button mnemonicParsing="false" onAction="#OnAction_Inicio" prefWidth="110.0" text="Inicio" />
+         </children>
+      </HBox>
+      <TableView fx:id="tvData" prefHeight="200.0" prefWidth="1131.0">
+         <columns>
+            <TableColumn fx:id="tvData_ID" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="tvData_FEATURES" prefWidth="363.0" text="FEATURES" />
+            <TableColumn fx:id="tvData_CLASS" prefWidth="112.0" text="CLASS" />
+            <TableColumn fx:id="tvData_CLASSTRUE" prefWidth="112.0" text="CLASS TRUE" />
+         </columns>
+      </TableView>      
+    </children>
+</VBox>
