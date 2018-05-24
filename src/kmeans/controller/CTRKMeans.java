@@ -15,7 +15,6 @@ public class CTRKMeans {
     private ArrayList<Reg> cents;
     private ArrayList<String> features_labels;
     private boolean classificou;
-    
 
     private void init() {
         regs = null;
@@ -220,14 +219,14 @@ public class CTRKMeans {
      */
     private void recalcula_centroid() {
         ArrayList<Object> countClass = new ArrayList();
-        
+
         for (Reg c : cents) {
             countClass.add(0);
             for (int i = 0; i < c.getFeatures().size(); i++) {
                 c.getFeatures().set(i, 0.0);
             }
         }
-        
+
         for (Reg r : regs) {
             for (int indexC = 0; indexC < cents.size(); indexC++) {
                 Reg c = cents.get(indexC);
@@ -242,22 +241,23 @@ public class CTRKMeans {
                 }
             }
         }
-        
+
         for (int ic = 0; ic < cents.size(); ic++) {
             Reg c = cents.get(ic);
             for (int i = 0; i < c.getFeatures().size(); i++) {
-                double newValue = (double) c.getFeatures().get(i) / ((int) countClass.get(ic)!= 0 ? (int) countClass.get(ic):1);
+                double newValue = (double) c.getFeatures().get(i) / ((int) countClass.get(ic) != 0 ? (int) countClass.get(ic) : 1);
                 c.getFeatures().set(i, newValue);
             }
         }
     }
 
-    public void nextStep() {
-        
+    public boolean nextStep() {
+
         if (classificou) {
             classificou = classifica();
             recalcula_centroid();
         }
+        return classificou;
     }
 
     public boolean verificaDados() {

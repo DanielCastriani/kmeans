@@ -70,7 +70,7 @@
             <Button layoutX="211.0" layoutY="23.0" mnemonicParsing="false" onAction="#OnAction_Abrir" prefWidth="110.0" text="Abrir" />
             <Button mnemonicParsing="false" onAction="#OnAction_Reset" prefWidth="110.0" text="Reset" />
             <Button mnemonicParsing="false" onAction="#OnAction_PassoAPasso" prefHeight="25.0" prefWidth="110.0" text="Passo a Passo" />
-            <Button mnemonicParsing="false" onAction="#OnAction_Inicio" prefWidth="110.0" text="Inicio" />
+            <Button mnemonicParsing="false" onAction="#OnAction_Resolve" prefWidth="110.0" text="Resolve" />
          </children>
       </HBox>
       <TableView fx:id="tvData" prefHeight="200.0" prefWidth="1131.0">

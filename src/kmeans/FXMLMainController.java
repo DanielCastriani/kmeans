@@ -3,7 +3,9 @@ package kmeans;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,11 +69,10 @@ public class FXMLMainController implements Initializable {
         tvData_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tvData_FEATURES.setCellValueFactory(new PropertyValueFactory<>("features"));
         tvData_CLASS.setCellValueFactory(new PropertyValueFactory<>("y"));
-        tvData_CLASSTRUE.setCellValueFactory(new PropertyValueFactory<>("y_true"))
-                ;
+        tvData_CLASSTRUE.setCellValueFactory(new PropertyValueFactory<>("y_true"));
         tvCentroidesClass.setCellValueFactory(new PropertyValueFactory<>("y_true"));
         tvCentroidesFeatures.setCellValueFactory(new PropertyValueFactory<>("features"));
-        
+
         spnC.setValueFactory(new SpinnerValueFactory<Integer>() {
             @Override
             public void decrement(int steps) {
@@ -126,7 +127,6 @@ public class FXMLMainController implements Initializable {
         sc.setTitle(ctr.getPath());
     }
 
-    //<editor-fold defaultstate="collapsed" desc="BTNS">
     @FXML
     private void OnAction_Abrir(ActionEvent event) {
         if (ctr.load_data()) {
@@ -150,11 +150,16 @@ public class FXMLMainController implements Initializable {
         ctr.nextStep();
         update();
     }
+    Task auto;
 
     @FXML
-    private void OnAction_Inicio(ActionEvent event) {
+    private void OnAction_Resolve(ActionEvent event) {
+
+        while (ctr.nextStep()) {
+            update();
+        }
+
     }
-    //</editor-fold>
 
     private int getRadioIndex(ArrayList<RadioButton> rb) {
         int i = 0;
@@ -186,7 +191,7 @@ public class FXMLMainController implements Initializable {
         naY.setLabel(rbY.get(irbY).getText());
 
         seriesCentroid = addOnSeries(ctr.getCents(), irbX, irbY);
-        seriesCentroid.setName("Centroides");        
+        seriesCentroid.setName("Centroides");
         sc.getData().addAll(seriesCentroid);
 
         ArrayList<XYChart.Series> classes = new ArrayList<>();
